@@ -20,4 +20,15 @@ public class ClimberService {
     public List<Climber> getClimbers(){
         return climberRepository.findAll(); //returns list of climbers
     }
+
+    public Climber createClimber(Climber climber){
+        return climberRepository.save(climber);
+    }
+
+    public Climber updateClimber(Climber climber, Long id){
+        return climberRepository.save(climber);
+    }
+    public void deleteById(Long id){
+        climberRepository.deleteById(id);
+    }
 }

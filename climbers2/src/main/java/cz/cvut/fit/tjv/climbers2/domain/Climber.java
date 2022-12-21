@@ -40,9 +40,9 @@ public class Climber {
         this.budget = budget;
     }
 
-//    public Climber() {
-//
-//    }
+    public Climber() {
+
+    }
 
     public Long getId() {
         return id;
