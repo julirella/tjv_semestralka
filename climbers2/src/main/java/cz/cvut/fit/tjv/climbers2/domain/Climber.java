@@ -1,20 +1,12 @@
 package cz.cvut.fit.tjv.climbers2.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table
-public class Climber {
+public class Climber implements Serializable, DomainEntity<Long> {
     @Id
-    @SequenceGenerator(
-            name = "climber_sequence",
-            sequenceName = "climber_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "climber_sequence"
-    )
+    @GeneratedValue
     private Long id;
     private String name;
     private String surname;
@@ -40,10 +32,9 @@ public class Climber {
         this.budget = budget;
     }
 
-    public Climber() {
+    public Climber() {}
 
-    }
-
+    @Override
     public Long getId() {
         return id;
     }
