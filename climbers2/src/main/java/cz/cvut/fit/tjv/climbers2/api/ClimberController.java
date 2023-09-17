@@ -13,21 +13,21 @@ import java.util.List;
 public class ClimberController extends AbstractCrudController<Climber, ClimberDto, Long>{
     public ClimberController(ClimberService service){
         super(
-                service,
-                entity -> {
-                    var dto = new ClimberDto();
-                    dto.setId(entity.getId());
-                    dto.setName(entity.getName());
-                    dto.setSurname(entity.getSurname());
-                    dto.setAddress(entity.getAddress());
-                    dto.setStrength(entity.getStrength());
-                    dto.setBudget(entity.getBudget());
-                    return dto;
-                },
-                dto -> {
-                    var entity = new Climber(dto.getId(), dto.getName(), dto.getSurname(), dto.getAddress(), dto.getStrength(), dto.getBudget());
-                    return entity;
-                }
+                service
+//                ,entity -> {
+//                    var dto = new ClimberDto();
+//                    dto.setId(entity.getId());
+//                    dto.setName(entity.getName());
+//                    dto.setSurname(entity.getSurname());
+//                    dto.setAddress(entity.getAddress());
+//                    dto.setStrength(entity.getStrength());
+//                    dto.setBudget(entity.getBudget());
+//                    return dto;
+//                },
+//                dto -> {
+//                    var entity = new Climber(dto.getId(), dto.getName(), dto.getSurname(), dto.getAddress(), dto.getStrength(), dto.getBudget());
+//                    return entity;
+//                }
         );
     }
 }

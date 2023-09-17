@@ -1,5 +1,7 @@
 package cz.cvut.fit.tjv.climbers2.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +18,9 @@ public class Route implements Serializable, DomainEntity<Long> {
 
     private Integer grade;
     private Integer type;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateBuilt;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateTakenDown;
     @ManyToOne
     private Centre centre;

@@ -13,13 +13,13 @@ import java.util.function.Function;
 public abstract class AbstractCrudController<E extends DomainEntity<ID>, D, ID> {
 
     protected AbstractCrudService<E, ID> service;
-    protected Function<E, D> entityToDtoConverter;
-    protected Function<D, E> dtoToEntityConverter;
+//    protected Function<E, D> entityToDtoConverter;
+//    protected Function<D, E> dtoToEntityConverter;
 
-    public AbstractCrudController(AbstractCrudService<E, ID> service, Function<E, D> entityToDtoConverter, Function<D, E> dtoToEntityConverter) {
+    public AbstractCrudController(AbstractCrudService<E, ID> service/*, Function<E, D> entityToDtoConverter, Function<D, E> dtoToEntityConverter*/) {
         this.service = service;
-        this.entityToDtoConverter = entityToDtoConverter;
-        this.dtoToEntityConverter = dtoToEntityConverter;
+//        this.entityToDtoConverter = entityToDtoConverter;
+//        this.dtoToEntityConverter = dtoToEntityConverter;
     }
 
 //
