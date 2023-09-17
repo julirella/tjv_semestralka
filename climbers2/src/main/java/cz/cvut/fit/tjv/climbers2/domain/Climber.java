@@ -3,6 +3,7 @@ package cz.cvut.fit.tjv.climbers2.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
+//@Table??
 @Entity
 public class Climber implements Serializable, DomainEntity<Long> {
     @Id
