@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClimberRepository extends JpaRepository<Climber, Long> {
+    boolean existsByIdAndRoutes_Id(Long climberId, Long routeId);
 }

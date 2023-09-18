@@ -4,10 +4,17 @@ import cz.cvut.fit.tjv.climbers2.dao.CentreRepository;
 import cz.cvut.fit.tjv.climbers2.domain.Centre;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityExistsException;
+
 @Component
 public class CentreService extends AbstractCrudService<Centre, Long>
 {
     public CentreService(CentreRepository repository) {
         super(repository);
     }
+
+//    @Override
+//    public Centre create(Centre entity) throws EntityExistsException {
+//
+//    }
 }

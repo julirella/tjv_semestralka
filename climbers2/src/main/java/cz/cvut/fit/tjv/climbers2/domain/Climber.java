@@ -2,6 +2,8 @@ package cz.cvut.fit.tjv.climbers2.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 //@Table??
 @Entity
@@ -15,6 +17,9 @@ public class Climber implements Serializable, DomainEntity<Long> {
     //maybe implement address as coordinates or something and then calculate distances
     private Integer strength; //or some kind of enum??
     private Integer budget;
+    @ManyToMany
+    @JoinTable(name = "route_climber")
+    private List<Route> routes = new ArrayList<>();
 
     public Climber(Long id, String name, String surname, Integer address, Integer strength, Integer budget) {
         this.id = id;
@@ -84,6 +89,9 @@ public class Climber implements Serializable, DomainEntity<Long> {
         this.budget = budget;
     }
 
+    public void addRoute(Route route){
+        routes.add(route);
+    }
     @Override
     public String toString() {
         return "Climber{" +

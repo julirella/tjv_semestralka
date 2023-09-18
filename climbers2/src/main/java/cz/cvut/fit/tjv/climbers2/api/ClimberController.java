@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/climber")
 public class ClimberController extends AbstractCrudController<Climber, ClimberDto, Long>{
+    private final ClimberService service;
     public ClimberController(ClimberService service){
         super(
                 service
@@ -29,5 +30,11 @@ public class ClimberController extends AbstractCrudController<Climber, ClimberDt
 //                    return entity;
 //                }
         );
+        this.service = service;
+    }
+
+    @PostMapping("/{climberId}/addRoute/{routeId}")
+    public Climber addRoute(@PathVariable Long climberId, @PathVariable Long routeId){
+        return service.addRoute(climberId, routeId);
     }
 }

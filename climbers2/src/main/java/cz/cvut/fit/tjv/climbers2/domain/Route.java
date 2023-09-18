@@ -2,12 +2,11 @@ package cz.cvut.fit.tjv.climbers2.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Route implements Serializable, DomainEntity<Long> {
@@ -24,6 +23,8 @@ public class Route implements Serializable, DomainEntity<Long> {
     private Date dateTakenDown;
     @ManyToOne
     private Centre centre;
+//   @ManyToMany(mappedBy = "routes")
+//    private List<Climber> climbers;
 
     public Route(Long id, String name, Integer grade, Integer type, Date dateBuilt, Date dateTakenDown, Centre centre) {
         this.id = id;
@@ -32,7 +33,7 @@ public class Route implements Serializable, DomainEntity<Long> {
         this.type = type;
         this.dateBuilt = dateBuilt;
         this.dateTakenDown = dateTakenDown;
-        this.centre = centre;
+        this.centre = Objects.requireNonNull(centre);
     }
 
     public Route() {

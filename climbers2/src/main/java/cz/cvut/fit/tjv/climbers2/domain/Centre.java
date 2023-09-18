@@ -1,9 +1,8 @@
 package cz.cvut.fit.tjv.climbers2.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Centre implements Serializable, DomainEntity<Long> {
@@ -13,6 +12,8 @@ public class Centre implements Serializable, DomainEntity<Long> {
     private String name;
     private Integer address;
     private Integer price;
+//   @OneToMany(mappedBy = "centre")
+//    private List<Route> routes;
 
     public Centre(Long id, String name, Integer address, Integer price) {
         this.id = id;
