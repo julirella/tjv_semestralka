@@ -29,4 +29,12 @@ public class ClimberService extends AbstractCrudService<Climber, Long>{
         climber.get().addRoute(route.get()); //maybe do this part in repository?
         return climberRepository.save(climber.get());
     }
+
+//    public Iterable<Route> recommendRoutes(Long climberId){
+//        /*
+//        * check that climber exists
+//        * select routes where centre price <= budget, route grade <= climber strength, climber hasn't climbed the route yet
+//        * order by distance of climber from centre
+//        * */
+//    }
 }

@@ -3,6 +3,7 @@ package cz.cvut.fit.tjv.climbers2.api;
 import cz.cvut.fit.tjv.climbers2.api.model.ClimberDto;
 import cz.cvut.fit.tjv.climbers2.business.ClimberService;
 import cz.cvut.fit.tjv.climbers2.domain.Climber;
+import cz.cvut.fit.tjv.climbers2.domain.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,4 +38,9 @@ public class ClimberController extends AbstractCrudController<Climber, ClimberDt
     public Climber addRoute(@PathVariable Long climberId, @PathVariable Long routeId){
         return service.addRoute(climberId, routeId);
     }
+//
+//    @GetMapping("/recommendRoutes/{id}")
+//    public Iterable<Route> recommendRoutes(@PathVariable Long id){
+//        return service.recommendRoutes(id);
+//    }
 }
