@@ -1,20 +1,36 @@
 package cz.cvut.fit.tjv.climbers2.business;
 
 import cz.cvut.fit.tjv.climbers2.dao.CentreRepository;
+import cz.cvut.fit.tjv.climbers2.dao.RouteRepository;
 import cz.cvut.fit.tjv.climbers2.domain.Centre;
+import cz.cvut.fit.tjv.climbers2.domain.Route;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
 
 @Component
 public class CentreService extends AbstractCrudService<Centre, Long>
 {
-    public CentreService(CentreRepository repository) {
+    private final CentreRepository centreRepository;
+    private final RouteRepository routeRepository;
+    private final RouteService routeService;
+    public CentreService(CentreRepository repository, CentreRepository centreRepository, RouteRepository routeRepository, RouteService routeService) {
         super(repository);
+        this.centreRepository = centreRepository;
+        this.routeRepository = routeRepository;
+        this.routeService = routeService;
     }
 
-//    @Override
-//    public Centre create(Centre entity) throws EntityExistsException {
-//
-//    }
+    @Override
+    public void deleteById(Long centreId) throws EntityNotFoundException{
+        if(!centreRepository.existsById(centreId)) throw new EntityNotFoundException();
+        //find all routes in centre
+        Iterable<Route> routes = routeRepository.findRoutesByCentre_Id(centreId);
+        //delete those routes, which will delete all routes-climber connections for those routes
+        for(Route route : routes){
+            routeService.deleteById(route.getId());
+        }
+        //delete centre
+        centreRepository.deleteById(centreId);
+    }
 }

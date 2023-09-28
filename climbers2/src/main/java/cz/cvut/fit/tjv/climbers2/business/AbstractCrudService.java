@@ -24,7 +24,7 @@ public abstract class AbstractCrudService<E extends DomainEntity<K>, K> {
         return repository.save(entity);
     }
 
-    public Optional<E> readById(K id){
+    public Optional<E> readById(K id){ //returns null if it doesn't exist, maybe exception instead?
         return repository.findById(id);
     }
 
@@ -38,6 +38,7 @@ public abstract class AbstractCrudService<E extends DomainEntity<K>, K> {
     }
 
     public void deleteById(K id) {
+        if(!repository.existsById(id)) throw new EntityNotFoundException();
         repository.deleteById(id);
     }
 }

@@ -38,6 +38,11 @@ public class ClimberController extends AbstractCrudController<Climber, ClimberDt
     public Climber addRoute(@PathVariable Long climberId, @PathVariable Long routeId){
         return service.addRoute(climberId, routeId);
     }
+
+    @DeleteMapping("/{climberId}/addRoute/{routeId}")
+    public Climber deleteRoute(@PathVariable Long climberId, @PathVariable Long routeId){
+        return service.deleteRoute(climberId, routeId);
+    }
 //
 //    @GetMapping("/recommendRoutes/{id}")
 //    public Iterable<Route> recommendRoutes(@PathVariable Long id){

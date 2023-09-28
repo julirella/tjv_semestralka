@@ -30,6 +30,14 @@ public class ClimberService extends AbstractCrudService<Climber, Long>{
         return climberRepository.save(climber.get());
     }
 
+    public Climber deleteRoute(Long climberId, Long routeId){
+        Optional<Climber> climber = climberRepository.findById(climberId);
+        Optional<Route> route = routeRepository.findById(routeId);
+        if(climber.isEmpty() || route.isEmpty()) throw new EntityNotFoundException();
+        climber.get().deleteRoute(route.get());
+        return climberRepository.save(climber.get());
+    }
+
 //    public Iterable<Route> recommendRoutes(Long climberId){
 //        /*
 //        * check that climber exists

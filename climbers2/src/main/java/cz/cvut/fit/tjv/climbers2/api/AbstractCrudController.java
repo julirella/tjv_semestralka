@@ -30,7 +30,6 @@ public abstract class AbstractCrudController<E extends DomainEntity<ID>, D, ID> 
 
     @PostMapping
     public E create(@RequestBody E body){
-
         return service.create(body);
     }
     @GetMapping

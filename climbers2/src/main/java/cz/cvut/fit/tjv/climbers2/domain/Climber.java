@@ -17,7 +17,7 @@ public class Climber implements Serializable, DomainEntity<Long> {
     //maybe implement address as coordinates or something and then calculate distances
     private Integer strength; //or some kind of enum??
     private Integer budget;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "route_climber")
     private List<Route> routes = new ArrayList<>();
 
@@ -91,6 +91,10 @@ public class Climber implements Serializable, DomainEntity<Long> {
 
     public void addRoute(Route route){
         routes.add(route);
+    }
+
+    public void deleteRoute(Route route) {
+        routes.remove(route); //should this be in repository somehow?
     }
     @Override
     public String toString() {
