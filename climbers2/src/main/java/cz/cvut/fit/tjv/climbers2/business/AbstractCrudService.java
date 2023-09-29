@@ -3,8 +3,6 @@ package cz.cvut.fit.tjv.climbers2.business;
 import cz.cvut.fit.tjv.climbers2.domain.DomainEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
@@ -18,9 +16,9 @@ public abstract class AbstractCrudService<E extends DomainEntity<K>, K> {
         this.repository = repository;
     }
 
-    public E create(E entity)throws EntityExistsException {
-        K id = entity.getId(); //currently useless test, because post always generates a new id
-        if(id != null && repository.existsById(id))throw new EntityExistsException(entity.getId().toString());
+    public E create(E entity)throws BadRequestException {
+        K id = entity.getId();
+        if(id != null && repository.existsById(id))throw new BadRequestException(entity.getClass().getSimpleName() + " with id " + entity.getId().toString() + " already exists.");
         return repository.save(entity);
     }
 
@@ -32,13 +30,13 @@ public abstract class AbstractCrudService<E extends DomainEntity<K>, K> {
         return repository.findAll();
     }
 
-    public E update(E entity)throws EntityNotFoundException { //find better exception
-        if(!repository.existsById(entity.getId()))throw new EntityNotFoundException(entity.getId().toString());
+    public E update(E entity)throws BadRequestException {
+        if(!repository.existsById(entity.getId()))throw new BadRequestException(entity.getClass().getSimpleName() + " with id " + entity.getId() + " doesn't exist.");
         return repository.save(entity);
     }
 
     public void deleteById(K id) {
-        if(!repository.existsById(id)) throw new EntityNotFoundException();
+        if(!repository.existsById(id)) throw new BadRequestException("Requested entity with id " + id.toString() + " doesn't exist.");
         repository.deleteById(id);
     }
 }

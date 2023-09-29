@@ -22,8 +22,8 @@ public class CentreService extends AbstractCrudService<Centre, Long>
     }
 
     @Override
-    public void deleteById(Long centreId) throws EntityNotFoundException{
-        if(!centreRepository.existsById(centreId)) throw new EntityNotFoundException();
+    public void deleteById(Long centreId) throws BadRequestException{
+        if(!centreRepository.existsById(centreId)) throw new BadRequestException("Centre with id " + centreId.toString() + "  doesn't exist.");
         //find all routes in centre
         Iterable<Route> routes = routeRepository.findRoutesByCentre_Id(centreId);
         //delete those routes, which will delete all routes-climber connections for those routes
