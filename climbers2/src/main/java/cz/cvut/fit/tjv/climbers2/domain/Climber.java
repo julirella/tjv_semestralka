@@ -3,7 +3,9 @@ package cz.cvut.fit.tjv.climbers2.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //@Table??
 @Entity
@@ -17,7 +19,7 @@ public class Climber implements Serializable, DomainEntity<Long> {
     private Integer budget;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "route_climber")
-    private List<Route> routes = new ArrayList<>();
+    private Set<Route> routes = new HashSet<>();
 
     public Climber(Long id, String name, String surname, Integer strength, Integer budget) {
         this.id = id;
