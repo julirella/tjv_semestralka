@@ -38,11 +38,14 @@ public class ClimberService extends AbstractCrudService<Climber, Long>{
         return climberRepository.save(climber.get());
     }
 
-//    public Iterable<Route> recommendRoutes(Long climberId){
-//        /*
-//        * check that climber exists
-//        * select routes where centre price <= budget, route grade <= climber strength, climber hasn't climbed the route yet
-//        * order by distance of climber from centre
-//        * */
-//    }
+    public Iterable<Route> recommendRoutes(Long climberId){
+        /*
+        * check that climber exists
+        * select routes where centre price <= budget, route grade <= climber strength, climber hasn't climbed the route yet
+        * order by centre price
+        * */
+        Optional<Climber> climber = climberRepository.findById(climberId);
+        if(climber.isEmpty()) throw new BadRequestException("Climber with id " + climberId.toString() + " doesn't exist");
+        return routeRepository.recommendRoutesForClimber(climberId);
+    }
 }

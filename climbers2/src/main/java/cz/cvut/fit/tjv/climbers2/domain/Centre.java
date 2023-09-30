@@ -10,15 +10,11 @@ public class Centre implements Serializable, DomainEntity<Long> {
     @GeneratedValue
     private Long id;
     private String name;
-    private Integer address;
     private Integer price;
-//   @OneToMany(mappedBy = "centre")
-//    private List<Route> routes;
 
-    public Centre(Long id, String name, Integer address, Integer price) {
+    public Centre(Long id, String name, Integer price) {
         this.id = id;
         this.name = name;
-        this.address = address;
         this.price = price;
     }
 
@@ -41,14 +37,6 @@ public class Centre implements Serializable, DomainEntity<Long> {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getAddress() {
-        return address;
-    }
-
-    public void setAddress(Integer address) {
-        this.address = address;
     }
 
     public Integer getPrice() {

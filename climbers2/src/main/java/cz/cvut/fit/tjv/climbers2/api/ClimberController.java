@@ -43,9 +43,13 @@ public class ClimberController extends AbstractCrudController<Climber, ClimberDt
     public Climber deleteRoute(@PathVariable Long climberId, @PathVariable Long routeId){
         return service.deleteRoute(climberId, routeId);
     }
-//
-//    @GetMapping("/recommendRoutes/{id}")
-//    public Iterable<Route> recommendRoutes(@PathVariable Long id){
-//        return service.recommendRoutes(id);
-//    }
+
+    /**
+     * For a given climber, recommends routes that the climber hasn't climbed yet, are within their strength range and budget,
+     * ordered by centre price
+     * */
+    @GetMapping("/recommendRoutes/{id}")
+    public Iterable<Route> recommendRoutes(@PathVariable Long id){
+        return service.recommendRoutes(id);
+    }
 }

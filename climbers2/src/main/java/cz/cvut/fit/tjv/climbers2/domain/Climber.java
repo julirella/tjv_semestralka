@@ -13,27 +13,23 @@ public class Climber implements Serializable, DomainEntity<Long> {
     private Long id;
     private String name;
     private String surname;
-    private Integer address;
-    //maybe implement address as coordinates or something and then calculate distances
     private Integer strength; //or some kind of enum??
     private Integer budget;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "route_climber")
     private List<Route> routes = new ArrayList<>();
 
-    public Climber(Long id, String name, String surname, Integer address, Integer strength, Integer budget) {
+    public Climber(Long id, String name, String surname, Integer strength, Integer budget) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.address = address;
         this.strength = strength;
         this.budget = budget;
     }
 
-    public Climber(String name, String surname, Integer address, Integer strength, Integer budget) {
+    public Climber(String name, String surname, Integer strength, Integer budget) {
         this.name = name;
         this.surname = surname;
-        this.address = address;
         this.strength = strength;
         this.budget = budget;
     }
@@ -65,14 +61,6 @@ public class Climber implements Serializable, DomainEntity<Long> {
         this.surname = surname;
     }
 
-    public Integer getAddress() {
-        return address;
-    }
-
-    public void setAddress(Integer address) {
-        this.address = address;
-    }
-
     public Integer getStrength() {
         return strength;
     }
@@ -95,16 +83,5 @@ public class Climber implements Serializable, DomainEntity<Long> {
 
     public void deleteRoute(Route route) {
         routes.remove(route); //should this be in repository somehow?
-    }
-    @Override
-    public String toString() {
-        return "Climber{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", address=" + address +
-                ", strength=" + strength +
-                ", budget=" + budget +
-                '}';
     }
 }

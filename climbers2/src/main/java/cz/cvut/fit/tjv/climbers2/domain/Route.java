@@ -1,11 +1,7 @@
 package cz.cvut.fit.tjv.climbers2.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,23 +12,13 @@ public class Route implements Serializable, DomainEntity<Long> {
     private String name;
 
     private Integer grade;
-    private Integer type;
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date dateBuilt;
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date dateTakenDown;
     @ManyToOne
     private Centre centre;
-//   @ManyToMany(mappedBy = "routes")
-//    private List<Climber> climbers;
 
-    public Route(Long id, String name, Integer grade, Integer type, Date dateBuilt, Date dateTakenDown, Centre centre) {
+    public Route(Long id, String name, Integer grade, Centre centre) {
         this.id = id;
         this.name = name;
         this.grade = grade;
-        this.type = type;
-        this.dateBuilt = dateBuilt;
-        this.dateTakenDown = dateTakenDown;
         this.centre = Objects.requireNonNull(centre);
     }
 
@@ -63,30 +49,6 @@ public class Route implements Serializable, DomainEntity<Long> {
 
     public void setGrade(Integer grade) {
         this.grade = grade;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public Date getDateBuilt() {
-        return dateBuilt;
-    }
-
-    public void setDateBuilt(Date dateBuilt) {
-        this.dateBuilt = dateBuilt;
-    }
-
-    public Date getDateTakenDown() {
-        return dateTakenDown;
-    }
-
-    public void setDateTakenDown(Date dateTakenDown) {
-        this.dateTakenDown = dateTakenDown;
     }
 
     public Centre getCentre() {
