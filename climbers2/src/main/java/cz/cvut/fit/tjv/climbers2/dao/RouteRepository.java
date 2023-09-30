@@ -14,6 +14,12 @@ public interface RouteRepository extends JpaRepositoryImplementation<Route, Long
     void deleteRoutesByCentre_Id(Long id);
     Iterable<Route> findRoutesByCentre_Id(Long id);
 
-    @Query(value = "select * from route where route.id not in (select routes_id from route_climber where route_climber.climber_id = :climberId);", nativeQuery = true)
+    //can this be made more efficient?
+    @Query(value = """
+            select * from route r
+                     where r.id not in (select routes_id from route_climber where climber_id = :climberId)
+                       and r.grade <= (select strength from climber c where c.id = :climberId)
+                        and (select price from centre where id = r.centre_id) <= (select budget from climber c where c.id = :climberId)
+                    order by r.grade;""", nativeQuery = true)
     Iterable<Route> recommendRoutesForClimber(@Param("climberId") Long climberId);
 }
