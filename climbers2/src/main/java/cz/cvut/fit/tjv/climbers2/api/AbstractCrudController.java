@@ -38,13 +38,8 @@ public abstract class AbstractCrudController<E extends DomainEntity<ID>, D, ID> 
     }
 
     @GetMapping("/{id}")
-    public Optional<E> getById(@PathVariable ID id){
+    public E getById(@PathVariable ID id){
        return service.readById(id);
-    }
-
-    @GetMapping("/test")
-    public String test(){
-        return "ok";
     }
 
     @PutMapping

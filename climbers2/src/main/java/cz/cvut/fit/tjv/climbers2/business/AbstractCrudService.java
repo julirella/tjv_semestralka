@@ -22,8 +22,10 @@ public abstract class AbstractCrudService<E extends DomainEntity<K>, K> {
         return repository.save(entity);
     }
 
-    public Optional<E> readById(K id){ //returns null if it doesn't exist, maybe exception instead?
-        return repository.findById(id);
+    public E readById(K id){
+        Optional<E> entity = repository.findById(id);
+        if(entity.isEmpty()) throw new BadRequestException("Requested entity with id " + id.toString() + " doesn't exist.");
+        return entity.get();
     }
 
     public Iterable<E> readAll() {
