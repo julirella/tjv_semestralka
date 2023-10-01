@@ -21,7 +21,7 @@ public class ClimberService extends AbstractCrudService<Climber, Long>{
         this.routeRepository = routeRepository;
     }
 
-    public Climber addRoute(Long climberId, Long routeId){
+    public Climber addRoute(Long climberId, Long routeId) throws BadRequestException{
         Optional<Climber> climber = climberRepository.findById(climberId);
         Optional<Route> route = routeRepository.findById(routeId);
         if(climberRepository.existsByIdAndRoutes_Id(climberId, routeId)) throw new BadRequestException("Climber has already climbed this route");

@@ -17,6 +17,7 @@ public class Climber implements Serializable, DomainEntity<Long> {
     private String surname;
     private Integer strength; //or some kind of enum??
     private Integer budget;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "route_climber")
     private Set<Route> routes = new HashSet<>();
@@ -77,6 +78,10 @@ public class Climber implements Serializable, DomainEntity<Long> {
 
     public void setBudget(Integer budget) {
         this.budget = budget;
+    }
+
+    public Set<Route> getRoutes() {
+        return routes;
     }
 
     public void addRoute(Route route){

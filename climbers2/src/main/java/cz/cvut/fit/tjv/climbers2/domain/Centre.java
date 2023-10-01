@@ -1,6 +1,7 @@
 package cz.cvut.fit.tjv.climbers2.domain;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,6 +15,11 @@ public class Centre implements Serializable, DomainEntity<Long> {
 
     public Centre(Long id, String name, Integer price) {
         this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public Centre(String name, Integer price) {
         this.name = name;
         this.price = price;
     }
