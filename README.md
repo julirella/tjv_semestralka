@@ -2,7 +2,10 @@
 
 ## Popis
 
-Aplikace bude pracovat s databází lezeckých cest, lezců a lezeckých center. Uživatel (lezec) bude moci vyhledávat v seznamu lezeckých cest a center a zaznamenávat cesty, které vylezl nebo chce vylézt. 
-Aplikace bude moci uživateli cesty také doporučit, a to na základě různých parametrů jako například obtížnost cesty, lokace nebo cena vstupného lezeckého centra.
+Aplikace bude pracovat s databází lezeckých cest, lezců a lezeckých center. Uživatel (lezec) bude moci vyhledávat v seznamu lezeckých cest a center a zaznamenávat cesty, které vylezl.
 
-Komplexní operace: zhodnocení, jestli se uživatel za určitý čas zlepšil nebo zhoršil v lezení podle toho, kolik jakých cest vylezl.
+### Dotaz navíc
+Možnost doporučení cest pro lezce. Vypíšou se cesty, které lezec ještě nelezl, má na ně dostatečné schopnosti a má budget na návštěvu lezeckého centra, ve kterém se nachází.
+
+### Komplexní business operace
+Po vylezení cesty možnost navrhnout jiné obtížnostní hodnocení. Pokud je to nejpopulárnější hodnocení cesty od lezců, její obtížnost se změní.
