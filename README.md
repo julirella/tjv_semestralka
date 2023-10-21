@@ -8,4 +8,4 @@ Aplikace bude pracovat s databází lezeckých cest, lezců a lezeckých center.
 Možnost doporučení cest pro lezce. Vypíšou se cesty, které lezec ještě nelezl, má na ně dostatečné schopnosti a má budget na návštěvu lezeckého centra, ve kterém se nachází.
 
 ### Komplexní business operace
-Po vylezení cesty možnost navrhnout jiné obtížnostní hodnocení. Pokud je to nejpopulárnější hodnocení cesty od lezců, její obtížnost se změní.
+Lezci se přepočítá síla na základě obtížností cest, které vylezl.
