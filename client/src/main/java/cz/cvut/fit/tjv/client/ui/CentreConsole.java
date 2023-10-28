@@ -22,13 +22,46 @@ public class CentreConsole {
         return "hello";
     }
 
-//    @ShellMethod(key = "getCentre")
-//    public Optional<Centre> readCentre(@ShellOption Integer id){
-//
-//    }
+    @ShellMethod
+    public String createCentre(String name, Integer price){
+        try{
+            Centre createdCentre = service.create(new Centre(null, name, price));
+            return "centre created successfully: " + createdCentre.toString();
+        }catch (RuntimeException exception){
+            return exception.getMessage();
+        }
+    }
+    @ShellMethod()
+    public String readCentre(Long id){
+        try{
+            return service.readById(id).toString();
+        } catch (RuntimeException exception){
+            return exception.getMessage();
+        }
+    }
 
     @ShellMethod
-    public Collection<Centre> readAllCentres() {
+    public Collection<Centre> readCentres() {
         return service.readAll();
+    }
+
+    @ShellMethod
+    public String updateCentre(Long id, String name, Integer price){
+        try{
+            Centre updatedCentre = service.update(new Centre(id, name, price));
+            return "centre updated successfully: " + updatedCentre.toString();
+        }catch (RuntimeException exception){
+            return exception.getMessage();
+        }
+    }
+
+    @ShellMethod
+    public String deleteCentre(Long id){
+        try {
+            service.delete(id);
+            return "centre with id " + id.toString() + " deleted successfully";
+        }catch (RuntimeException exception){
+            return exception.getMessage();
+        }
     }
 }

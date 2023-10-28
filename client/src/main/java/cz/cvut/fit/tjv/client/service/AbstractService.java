@@ -11,7 +11,21 @@ public class AbstractService <Entity>{
         this.client = client;
     }
 
+    public Entity create(Entity toCreate){
+        return client.create(toCreate);
+    }
     public Collection<Entity> readAll() {
         return client.readAll();
+    }
+    public Entity readById(Long id){
+        return client.readById(id);
+    }
+
+    public Entity update(Entity toUpdate){
+        return client.update(toUpdate);
+    }
+
+    public void delete(Long id){
+        client.delete(id);
     }
 }
