@@ -5,12 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CentreClient extends AbstractClient<Centre>{
-//    String endpoint = "/centre";
     public CentreClient() {
         super("/centre", Centre.class);
     }
-
-//    public CentreClient(String endpoint) {
-//        super(endpoint);
-//    }
 }
