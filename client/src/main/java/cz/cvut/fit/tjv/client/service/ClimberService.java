@@ -6,7 +6,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClimberService extends AbstractService<Climber>{
+    private ClimberClient client;
     public ClimberService(ClimberClient client) {
         super(client);
+        this.client = client;
+    }
+    public Climber addRoute(Long climberId, Long routeId){
+        return client.addRoute(climberId, routeId);
+    }
+
+    public Climber deleteRoute(Long climberId, Long routeId){
+        return client.deleteRoute(climberId, routeId);
     }
 }

@@ -30,6 +30,13 @@ public class AbstractClient <E> {
     protected WebTarget targetWithId(Long id){
         return client.target(serverUrl + endpoint + "/" + id.toString());
     }
+    protected WebTarget targetFromStrings(List<String> strings){
+        String path = serverUrl + endpoint;
+        for (String s : strings) {
+            path = path.concat("/" + s);
+        }
+        return client.target(path);
+    }
     public E create(E toCreate){
         Response response = endpointPath.request(MediaType.APPLICATION_JSON_TYPE)
                 .post(Entity.entity(toCreate, MediaType.APPLICATION_JSON_TYPE));

@@ -2,6 +2,7 @@ package cz.cvut.fit.tjv.client.service;
 
 import cz.cvut.fit.tjv.client.api_client.CentreClient;
 import cz.cvut.fit.tjv.client.domain.Centre;
+import cz.cvut.fit.tjv.client.domain.Climber;
 import org.springframework.stereotype.Service;
 
 @Service

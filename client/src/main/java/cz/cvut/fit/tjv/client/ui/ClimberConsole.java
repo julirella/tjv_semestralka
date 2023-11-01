@@ -40,4 +40,25 @@ public class ClimberConsole {
     public String deleteClimber(Long id){
         return console.delete(id);
     }
+
+    @ShellMethod
+    public String climberAddRoute(Long climberId, Long routeId){
+        try{
+            Climber modifiedClimber = service.addRoute(climberId, routeId);
+            return "route added to climber\n" + modifiedClimber.toString();
+        } catch (RuntimeException exception){
+            return exception.getMessage();
+        }
+    }
+
+    @ShellMethod
+    public String climberDeleteRoute(Long climberId, Long routeId){
+        try{
+            Climber modifiedClimber = service.deleteRoute(climberId, routeId);
+            return "route deleted from climber\n" + modifiedClimber.toString();
+        } catch (RuntimeException exception){
+            return exception.getMessage();
+        }
+    }
+
 }

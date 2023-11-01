@@ -5,7 +5,7 @@ import cz.cvut.fit.tjv.client.api_client.AbstractClient;
 import java.util.Collection;
 
 public class AbstractService <Entity>{
-    private AbstractClient<Entity> client;
+    protected AbstractClient<Entity> client;
 
     public AbstractService(AbstractClient<Entity> client) {
         this.client = client;
