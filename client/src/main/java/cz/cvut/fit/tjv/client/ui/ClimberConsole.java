@@ -1,11 +1,13 @@
 package cz.cvut.fit.tjv.client.ui;
 
 import cz.cvut.fit.tjv.client.domain.Climber;
+import cz.cvut.fit.tjv.client.domain.Route;
 import cz.cvut.fit.tjv.client.service.ClimberService;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
 import java.util.Collection;
+import java.util.List;
 
 @ShellComponent
 public class ClimberConsole {
@@ -56,6 +58,16 @@ public class ClimberConsole {
         try{
             Climber modifiedClimber = service.deleteRoute(climberId, routeId);
             return "route deleted from climber\n" + modifiedClimber.toString();
+        } catch (RuntimeException exception){
+            return exception.getMessage();
+        }
+    }
+
+    @ShellMethod
+    public String recommendRoutes(Long climberId){
+        try{
+            List<Route> routes = service.recommendRoutes(climberId);
+            return "you should try:\n" + routes.toString();
         } catch (RuntimeException exception){
             return exception.getMessage();
         }

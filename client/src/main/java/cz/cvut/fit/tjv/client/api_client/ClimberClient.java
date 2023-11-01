@@ -1,10 +1,12 @@
 package cz.cvut.fit.tjv.client.api_client;
 
 import cz.cvut.fit.tjv.client.domain.Climber;
+import cz.cvut.fit.tjv.client.domain.Route;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -28,6 +30,14 @@ public class ClimberClient extends AbstractClient<Climber>{
         WebTarget path = targetFromStrings(List.of(climberId.toString(), "deleteRoute", routeId.toString()));
         Response response = path.request(MediaType.APPLICATION_JSON_TYPE).delete();
         if(response.getStatus() == 200) return response.readEntity(Climber.class);
+        else if(response.getStatus() == 400) throw new RuntimeException(response.readEntity(String.class));
+        else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
+    }
+
+    public List<Route> recommendRoutes(Long climberId){
+        WebTarget path = targetFromStrings(List.of("recommendRoutes", climberId.toString()));
+        Response response = path.request(MediaType.APPLICATION_JSON_TYPE).get();
+        if(response.getStatus() == 200) return response.readEntity(new GenericType<List<Route>>() {});
         else if(response.getStatus() == 400) throw new RuntimeException(response.readEntity(String.class));
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
