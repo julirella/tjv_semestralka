@@ -73,4 +73,14 @@ public class ClimberConsole {
         }
     }
 
+    @ShellMethod
+    public String calculateStrength(Long climberId){
+        try{
+            Integer newStrength = service.calculateStrength(climberId);
+            return "strength recalculated to " + newStrength.toString();
+        }catch (RuntimeException exception){
+            return exception.getMessage();
+        }
+    }
+
 }
