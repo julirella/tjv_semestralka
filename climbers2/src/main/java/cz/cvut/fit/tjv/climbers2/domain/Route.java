@@ -1,11 +1,10 @@
 package cz.cvut.fit.tjv.climbers2.domain;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
+import jakarta.persistence.*;
 
 @Entity
-public class Route implements Serializable, DomainEntity<Long> {
+public class Route implements DomainEntity<Long> {
     @Id
     @GeneratedValue
     private Long id;

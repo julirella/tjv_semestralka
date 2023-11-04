@@ -6,8 +6,6 @@ import cz.cvut.fit.tjv.climbers2.domain.Centre;
 import cz.cvut.fit.tjv.climbers2.domain.Route;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityNotFoundException;
-
 @Component
 public class CentreService extends AbstractCrudService<Centre, Long>
 {

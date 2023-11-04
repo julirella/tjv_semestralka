@@ -1,15 +1,12 @@
 package cz.cvut.fit.tjv.climbers2.domain;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import jakarta.persistence.*;
 
 //@Table??
 @Entity
-public class Climber implements Serializable, DomainEntity<Long> {
+public class Climber implements DomainEntity<Long> {
     @Id
     @GeneratedValue
     private Long id;

@@ -6,8 +6,6 @@ import cz.cvut.fit.tjv.climbers2.domain.Climber;
 import cz.cvut.fit.tjv.climbers2.domain.Route;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Component
