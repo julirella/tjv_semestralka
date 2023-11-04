@@ -8,6 +8,7 @@ import org.springframework.shell.standard.ShellMethod;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @ShellComponent
 public class ClimberConsole {
@@ -76,8 +77,9 @@ public class ClimberConsole {
     @ShellMethod
     public String calculateStrength(Long climberId){
         try{
-            Integer newStrength = service.calculateStrength(climberId);
-            return "strength recalculated to " + newStrength.toString();
+            Optional<Integer> newStrength = service.calculateStrength(climberId);
+            if(newStrength.isEmpty()) return "cannot calculate, no routes climbed yet";
+            else return "strength recalculated to " + newStrength.get().toString();
         }catch (RuntimeException exception){
             return exception.getMessage();
         }

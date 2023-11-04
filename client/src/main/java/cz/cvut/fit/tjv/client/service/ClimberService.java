@@ -26,16 +26,13 @@ public class ClimberService extends AbstractService<Climber>{
         return client.recommendRoutes(climberId);
     }
 
-    public Integer calculateStrength(Long climberId){
-//        List<Route> climbedRoutes = client.readById(climberId).getRoutes().stream().toList();
-//        Collections.sort(climbedRoutes, Comparator.comparing(Route::getGrade));
-//        System.out.println(climbedRoutes);
-//        return climbedRoutes.get(0).getGrade();
+    public Optional<Integer> calculateStrength(Long climberId){
         Climber climber = client.readById(climberId);
         Collection<Route> climbedRoutes = climber.getRoutes();
+        if(climbedRoutes.isEmpty()) return Optional.empty();
         int bestGrade = Collections.max(climbedRoutes, Comparator.comparingInt(Route::getGrade)).getGrade();
         climber.setStrength(bestGrade);
         client.update(climber);
-        return bestGrade;
+        return Optional.of(bestGrade);
     }
 }
