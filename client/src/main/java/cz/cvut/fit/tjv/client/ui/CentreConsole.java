@@ -4,17 +4,17 @@ import cz.cvut.fit.tjv.client.domain.Centre;
 import cz.cvut.fit.tjv.client.service.CentreService;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
-import org.springframework.shell.standard.ShellOption;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @ShellComponent
 public class CentreConsole {
     CentreService service;
+    Console<Centre> console;
 
     public CentreConsole(CentreService service) {
         this.service = service;
+        console = new Console<Centre>(service);
     }
 
     @ShellMethod(key = "hello")
@@ -22,13 +22,27 @@ public class CentreConsole {
         return "hello";
     }
 
-//    @ShellMethod(key = "getCentre")
-//    public Optional<Centre> readCentre(@ShellOption Integer id){
-//
-//    }
+    @ShellMethod
+    public String createCentre(String name, Integer price){
+        return console.create(new Centre(null, name, price));
+    }
+    @ShellMethod
+    public String readCentre(Long id){
+        return console.readOne(id);
+    }
 
     @ShellMethod
-    public Collection<Centre> readAllCentres() {
-        return service.readAll();
+    public Collection<Centre> readCentres() {
+        return console.readAll();
+    }
+
+    @ShellMethod
+    public String updateCentre(Long id, String name, Integer price){
+        return console.update(new Centre(id, name, price));
+    }
+
+    @ShellMethod
+    public String deleteCentre(Long id){
+        return console.delete(id);
     }
 }

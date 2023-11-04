@@ -39,7 +39,7 @@ public class ClimberController extends AbstractCrudController<Climber, ClimberDt
         return service.addRoute(climberId, routeId);
     }
 
-    @DeleteMapping("/{climberId}/addRoute/{routeId}")
+    @DeleteMapping("/{climberId}/deleteRoute/{routeId}")
     public Climber deleteRoute(@PathVariable Long climberId, @PathVariable Long routeId){
         return service.deleteRoute(climberId, routeId);
     }
