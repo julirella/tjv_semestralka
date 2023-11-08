@@ -4,6 +4,7 @@ import cz.cvut.fit.tjv.climbers2.business.ClimberService;
 import cz.cvut.fit.tjv.climbers2.domain.Climber;
 import cz.cvut.fit.tjv.climbers2.domain.Route;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -16,11 +17,18 @@ public class ClimberController extends AbstractCrudController<Climber, Long>{
         this.service = service;
     }
 
+    @Operation(description = "Add a route to climbers list of climbed routes.")
+    @Parameter(name = "climberId", description = "id of the climber")
+    @Parameter(name = "routeId", description = "id of the route")
     @PostMapping("/{climberId}/addRoute/{routeId}")
     public Climber addRoute(@PathVariable Long climberId, @PathVariable Long routeId){
         return service.addRoute(climberId, routeId);
     }
 
+
+    @Operation(description = "Delete a route from climbers list of climbed routes.")
+    @Parameter(name = "climberId", description = "id of the climber")
+    @Parameter(name = "routeId", description = "id of the route")
     @DeleteMapping("/{climberId}/deleteRoute/{routeId}")
     public Climber deleteRoute(@PathVariable Long climberId, @PathVariable Long routeId){
         return service.deleteRoute(climberId, routeId);
