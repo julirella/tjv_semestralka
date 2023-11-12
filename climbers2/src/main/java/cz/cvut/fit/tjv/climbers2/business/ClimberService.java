@@ -4,6 +4,8 @@ import cz.cvut.fit.tjv.climbers2.dao.ClimberRepository;
 import cz.cvut.fit.tjv.climbers2.dao.RouteRepository;
 import cz.cvut.fit.tjv.climbers2.domain.Climber;
 import cz.cvut.fit.tjv.climbers2.domain.Route;
+import cz.cvut.fit.tjv.climbers2.exceptions.BadRequestException;
+import cz.cvut.fit.tjv.climbers2.exceptions.IdDoesNotExistException;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -19,7 +21,7 @@ public class ClimberService extends AbstractCrudService<Climber, Long>{
         this.routeRepository = routeRepository;
     }
 
-    public Climber addRoute(Long climberId, Long routeId) throws BadRequestException{
+    public Climber addRoute(Long climberId, Long routeId) throws BadRequestException {
         Optional<Climber> climber = climberRepository.findById(climberId);
         Optional<Route> route = routeRepository.findById(routeId);
         if(climberRepository.existsByIdAndRoutes_Id(climberId, routeId)) throw new BadRequestException("Climber has already climbed this route");

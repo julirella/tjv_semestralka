@@ -6,6 +6,7 @@ import cz.cvut.fit.tjv.climbers2.dao.RouteRepository;
 import cz.cvut.fit.tjv.climbers2.domain.Centre;
 import cz.cvut.fit.tjv.climbers2.domain.Climber;
 import cz.cvut.fit.tjv.climbers2.domain.Route;
+import cz.cvut.fit.tjv.climbers2.exceptions.IdDoesNotExistException;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package cz.cvut.fit.tjv.climbers2.business;
+package cz.cvut.fit.tjv.climbers2.exceptions;
 
 public class IdDoesNotExistException extends RuntimeException{
     public IdDoesNotExistException(String message) {

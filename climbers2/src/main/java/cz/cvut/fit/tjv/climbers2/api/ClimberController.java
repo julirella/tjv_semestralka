@@ -23,7 +23,7 @@ public class ClimberController extends AbstractCrudController<Climber, Long>{
     @Parameter(name = "routeId", description = "id of the route")
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "ID does not exist")
-    @ApiResponse(responseCode = "500", description = "climber has already climbed this route")
+    @ApiResponse(responseCode = "400", description = "climber has already climbed this route")
     @PostMapping("/{climberId}/addRoute/{routeId}")
     public Climber addRoute(@PathVariable Long climberId, @PathVariable Long routeId){
         return service.addRoute(climberId, routeId);

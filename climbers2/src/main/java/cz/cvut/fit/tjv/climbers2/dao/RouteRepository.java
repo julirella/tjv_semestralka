@@ -28,5 +28,11 @@ public interface RouteRepository extends JpaRepositoryImplementation<Route, Long
                 and r.grade <= (select cl.strength from Climber cl where cl.id = :climberId)
                 and (r.centre.price <= (select cl.budget from Climber cl where cl.id = :climberId))
                 order by r.grade""")
+//    @Query(value = """
+//            SELECT r FROM Route r join Climber c on c.id
+//                where r not in (select cl.routes from Climber cl where cl.id = :climberId)
+//                and r.grade <= c.strength
+//                and r.centre.price <= c.budget
+//                order by r.grade""")
     Iterable<Route> recommendRoutesForClimber(@Param("climberId") Long climberId);
 }

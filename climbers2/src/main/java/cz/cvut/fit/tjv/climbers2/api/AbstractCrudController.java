@@ -15,7 +15,7 @@ public abstract class AbstractCrudController<Entity extends DomainEntity<ID>, ID
     }
 
     @ApiResponse(responseCode = "200", description = "OK")
-    @ApiResponse(responseCode = "500", description = "entity already exists")
+    @ApiResponse(responseCode = "400", description = "entity already exists")
     @PostMapping
     public Entity create(@RequestBody Entity body){
         return service.create(body);

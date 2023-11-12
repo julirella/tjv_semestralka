@@ -1,6 +1,8 @@
 package cz.cvut.fit.tjv.climbers2.business;
 
 import cz.cvut.fit.tjv.climbers2.domain.DomainEntity;
+import cz.cvut.fit.tjv.climbers2.exceptions.BadRequestException;
+import cz.cvut.fit.tjv.climbers2.exceptions.IdDoesNotExistException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

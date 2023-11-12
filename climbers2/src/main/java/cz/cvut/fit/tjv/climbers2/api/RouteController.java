@@ -16,7 +16,7 @@ public class RouteController extends AbstractCrudController<Route, Long>{
 
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "centre does not exist")
-    @ApiResponse(responseCode = "500", description = "entity already exists")
+    @ApiResponse(responseCode = "400", description = "entity already exists")
     @PostMapping
     @Override
     public Route create(Route body) {
