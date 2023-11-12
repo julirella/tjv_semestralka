@@ -5,6 +5,7 @@ import cz.cvut.fit.tjv.climbers2.domain.Climber;
 import cz.cvut.fit.tjv.climbers2.domain.Route;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -20,6 +21,7 @@ public class ClimberController extends AbstractCrudController<Climber, Long>{
     @Operation(description = "Add a route to climbers list of climbed routes.")
     @Parameter(name = "climberId", description = "id of the climber")
     @Parameter(name = "routeId", description = "id of the route")
+    @ApiResponse(responseCode = "404", description = "ID does not exist")
     @PostMapping("/{climberId}/addRoute/{routeId}")
     public Climber addRoute(@PathVariable Long climberId, @PathVariable Long routeId){
         return service.addRoute(climberId, routeId);
