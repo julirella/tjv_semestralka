@@ -15,11 +15,18 @@ public interface RouteRepository extends JpaRepositoryImplementation<Route, Long
     Iterable<Route> findRoutesByCentre_Id(Long id);
 
     //can this be made more efficient?
+//    @Query(value = """
+//            select * from route r
+//                    where r.id not in (select routes_id from route_climber where climber_id = :climberId)
+//                    and r.grade <= (select strength from climber c where c.id = :climberId)
+//                    and (select price from centre where id = r.centre_id) <= (select budget from climber c where c.id = :climberId)
+//                    order by r.grade;
+//            """, nativeQuery = true)
     @Query(value = """
-            select * from route r
-                     where r.id not in (select routes_id from route_climber where climber_id = :climberId)
-                       and r.grade <= (select strength from climber c where c.id = :climberId)
-                        and (select price from centre where id = r.centre_id) <= (select budget from climber c where c.id = :climberId)
-                    order by r.grade;""", nativeQuery = true)
+            SELECT r FROM Route r
+                where r not in (select cl.routes from Climber cl where cl.id = :climberId)
+                and r.grade <= (select cl.strength from Climber cl where cl.id = :climberId)
+                and (r.centre.price <= (select cl.budget from Climber cl where cl.id = :climberId))
+                order by r.grade""")
     Iterable<Route> recommendRoutesForClimber(@Param("climberId") Long climberId);
 }
