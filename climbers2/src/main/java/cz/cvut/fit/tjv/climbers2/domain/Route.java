@@ -21,6 +21,12 @@ public class Route implements DomainEntity<Long> {
         this.centre = Objects.requireNonNull(centre);
     }
 
+    public Route(String name, Integer grade, Centre centre) {
+        this.name = name;
+        this.grade = grade;
+        this.centre = centre;
+    }
+
     public Route() {
 
     }
