@@ -41,6 +41,6 @@ public class RouteRepositoryTest {
         routeRepository.saveAll(Arrays.asList(easyRoute1, easyRoute2, easyRoute3, hardRoute1, hardRoute2, hardRoute3));
 
         Iterable<Route> correctRoutes = List.of(easyRoute2, easyRoute1);
-        Assertions.assertIterableEquals(routeRepository.recommendRoutesForClimber(climber.getId()), correctRoutes);
+        Assertions.assertIterableEquals(correctRoutes, routeRepository.recommendRoutesForClimber(climber.getId()));
     }
 }

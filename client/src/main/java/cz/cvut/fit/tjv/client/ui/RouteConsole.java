@@ -28,7 +28,7 @@ public class RouteConsole {
     }
 
     @ShellMethod
-    public Collection<Route> readRoutes() {
+    public String readRoutes() {
         return console.readAll();
     }
 

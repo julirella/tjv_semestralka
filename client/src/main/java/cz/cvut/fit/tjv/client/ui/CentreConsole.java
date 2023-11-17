@@ -32,7 +32,7 @@ public class CentreConsole {
     }
 
     @ShellMethod
-    public Collection<Centre> readCentres() {
+    public String readCentres() {
         return console.readAll();
     }
 

@@ -28,10 +28,13 @@ public class Console<Entity>{
         }
     }
 
-    public Collection<Entity> readAll(){
-        return service.readAll();
+    public String readAll() {
+        try {
+            return service.readAll().toString();
+        } catch (RuntimeException exception){
+            return exception.getMessage();
+        }
     }
-
     public String update(Entity toUpdate){
         try{
             Entity updated = service.update(toUpdate);

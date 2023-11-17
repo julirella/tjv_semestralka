@@ -4,6 +4,7 @@ import cz.cvut.fit.tjv.climbers2.business.RouteService;
 import cz.cvut.fit.tjv.climbers2.domain.Route;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class RouteController extends AbstractCrudController<Route, Long>{
     @ApiResponse(responseCode = "400", description = "entity already exists")
     @PostMapping
     @Override
-    public Route create(Route body) {
+    public Route create(@RequestBody Route body) {
         return super.create(body);
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 public class AbstractClient <E> {
     private Client client;
     private  String serverUrl;
-    private WebTarget endpointPath;
+    protected WebTarget endpointPath;
     private Class<E> concreteClass;
     private String endpoint;
 
@@ -45,15 +45,19 @@ public class AbstractClient <E> {
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
     public Collection<E> readAll() {
-        List<E> entities = endpointPath.request(MediaType.APPLICATION_JSON_TYPE).get(new GenericType<List<E>>() {});
-        return entities;
+        Response response = endpointPath.request(MediaType.APPLICATION_JSON_TYPE).get();
+        if(response.getStatus() != 200) throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
+        else {
+            List<E> entities = response.readEntity(new GenericType<List<E>>() {});
+            return entities;
+        }
     }
 
     public E readById(Long id){
         WebTarget path = targetWithId(id);
         Response response = path.request(MediaType.APPLICATION_JSON_TYPE).get();
         if(response.getStatus() == 200) return response.readEntity(concreteClass);
-        else if(response.getStatus() == 400) throw new RuntimeException(response.readEntity(String.class));
+        else if(response.getStatus() == 404) throw new RuntimeException(response.readEntity(String.class));
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
 
@@ -61,14 +65,14 @@ public class AbstractClient <E> {
         Response response = endpointPath.request(MediaType.APPLICATION_JSON_TYPE)
                 .put(Entity.entity(toUpdate, MediaType.APPLICATION_JSON_TYPE));
         if(response.getStatus() == 200) return response.readEntity(concreteClass);
-        else if(response.getStatus() == 400) throw new RuntimeException(response.readEntity(String.class));
+        else if(response.getStatus() == 404) throw new RuntimeException(response.readEntity(String.class));
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
 
     public void delete(Long id){
         WebTarget path = targetWithId(id);
         Response response = path.request(MediaType.APPLICATION_JSON_TYPE).delete();
-        if(response.getStatus() == 400) throw new RuntimeException(response.readEntity(String.class));
+        if(response.getStatus() == 404) throw new RuntimeException(response.readEntity(String.class));
         else if(response.getStatus() != 200) throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
 

@@ -31,7 +31,7 @@ public abstract class AbstractCrudController<Entity extends DomainEntity<ID>, ID
     @ApiResponse(responseCode = "404", description = "ID does not exist")
     @GetMapping("/{id}")
     public Entity getById(@PathVariable ID id){
-       return service.readById(id);
+        return service.readById(id);
     }
 
     @ApiResponse(responseCode = "200", description = "OK")
