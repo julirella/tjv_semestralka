@@ -15,7 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import java.util.Optional;
 
 @SpringBootTest
-public class ClimberServiceTest {
+public class ClimberServiceUnitTest {
 
     @Autowired
     ClimberService climberService;

@@ -2,6 +2,7 @@ package cz.cvut.fit.tjv.climbers2.business;
 
 import cz.cvut.fit.tjv.climbers2.dao.CentreRepository;
 import cz.cvut.fit.tjv.climbers2.domain.Centre;
+import cz.cvut.fit.tjv.climbers2.exceptions.BadRequestException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

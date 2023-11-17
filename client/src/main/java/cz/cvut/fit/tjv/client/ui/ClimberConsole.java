@@ -30,7 +30,7 @@ public class ClimberConsole {
     }
 
     @ShellMethod
-    public Collection<Climber> readClimbers() {
+    String readClimbers() {
         return console.readAll();
     }
 

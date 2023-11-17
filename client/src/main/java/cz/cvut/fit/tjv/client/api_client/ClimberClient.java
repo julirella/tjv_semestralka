@@ -22,7 +22,7 @@ public class ClimberClient extends AbstractClient<Climber>{
         Response response = path.request(MediaType.APPLICATION_JSON_TYPE)
                 .post(Entity.json(null)); //why not .entity?
         if(response.getStatus() == 200) return response.readEntity(Climber.class);
-        else if(response.getStatus() == 400) throw new RuntimeException(response.readEntity(String.class));
+        else if(response.getStatus() == 400 || response.getStatus() == 404) throw new RuntimeException(response.readEntity(String.class));
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
 
@@ -30,7 +30,7 @@ public class ClimberClient extends AbstractClient<Climber>{
         WebTarget path = targetFromStrings(List.of(climberId.toString(), "deleteRoute", routeId.toString()));
         Response response = path.request(MediaType.APPLICATION_JSON_TYPE).delete();
         if(response.getStatus() == 200) return response.readEntity(Climber.class);
-        else if(response.getStatus() == 400) throw new RuntimeException(response.readEntity(String.class));
+        else if(response.getStatus() == 404) throw new RuntimeException(response.readEntity(String.class));
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
 
@@ -38,7 +38,7 @@ public class ClimberClient extends AbstractClient<Climber>{
         WebTarget path = targetFromStrings(List.of("recommendRoutes", climberId.toString()));
         Response response = path.request(MediaType.APPLICATION_JSON_TYPE).get();
         if(response.getStatus() == 200) return response.readEntity(new GenericType<List<Route>>() {});
-        else if(response.getStatus() == 400) throw new RuntimeException(response.readEntity(String.class));
+        else if(response.getStatus() == 404) throw new RuntimeException(response.readEntity(String.class));
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
 }

@@ -4,9 +4,8 @@ import cz.cvut.fit.tjv.climbers2.dao.CentreRepository;
 import cz.cvut.fit.tjv.climbers2.dao.RouteRepository;
 import cz.cvut.fit.tjv.climbers2.domain.Centre;
 import cz.cvut.fit.tjv.climbers2.domain.Route;
+import cz.cvut.fit.tjv.climbers2.exceptions.IdDoesNotExistException;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.EntityNotFoundException;
 
 @Component
 public class CentreService extends AbstractCrudService<Centre, Long>
@@ -22,8 +21,8 @@ public class CentreService extends AbstractCrudService<Centre, Long>
     }
 
     @Override
-    public void deleteById(Long centreId) throws BadRequestException{
-        if(!centreRepository.existsById(centreId)) throw new BadRequestException("Centre with id " + centreId.toString() + "  doesn't exist.");
+    public void deleteById(Long centreId) {
+        if(!centreRepository.existsById(centreId)) throw new IdDoesNotExistException("Centre with id " + centreId.toString() + "  doesn't exist.");
         //find all routes in centre
         Iterable<Route> routes = routeRepository.findRoutesByCentre_Id(centreId);
         //delete those routes, which will delete all routes-climber connections for those routes

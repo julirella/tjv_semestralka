@@ -1,12 +1,9 @@
 package cz.cvut.fit.tjv.climbers2.domain;
 
-import javax.persistence.*;
-import javax.transaction.Transactional;
-import java.io.Serializable;
-import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
-public class Centre implements Serializable, DomainEntity<Long> {
+public class Centre implements DomainEntity<Long> {
     @Id
     @GeneratedValue
     private Long id;
