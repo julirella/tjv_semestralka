@@ -19,6 +19,9 @@ public class Climber implements AbstractEntity{
         this.budget = budget;
     }
 
+    public Climber() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -88,7 +91,7 @@ public class Climber implements AbstractEntity{
                 ", budget=" + budget;
         String readableRoutes = "";
         for (Route route : this.routes){
-            readableRoutes = "\n" + route.getReadable();
+            readableRoutes = readableRoutes + "\n\t" + route.getReadable();
         }
         return climber + readableRoutes;
     }

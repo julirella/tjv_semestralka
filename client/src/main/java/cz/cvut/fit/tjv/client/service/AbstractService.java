@@ -2,7 +2,7 @@ package cz.cvut.fit.tjv.client.service;
 
 import cz.cvut.fit.tjv.client.api_client.AbstractClient;
 
-import java.util.Collection;
+import java.util.List;
 
 public class AbstractService <Entity>{
     protected AbstractClient<Entity> client;
@@ -14,7 +14,7 @@ public class AbstractService <Entity>{
     public Entity create(Entity toCreate){
         return client.create(toCreate);
     }
-    public Collection<Entity> readAll() {
+    public List<Entity> readAll() {
         return client.readAll();
     }
     public Entity readById(Long id){

@@ -13,6 +13,9 @@ public class Route implements AbstractEntity{
         this.centre = centre;
     }
 
+    public Route() {
+    }
+
     public Long getId() {
         return id;
     }

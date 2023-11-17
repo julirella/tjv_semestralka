@@ -25,6 +25,7 @@ dependencies {
 //	implementation 'javax.ws.rs:javax.ws.rs-api:2.1.1'
 //	implementation 'org.glassfish.jersey.core:jersey-client:2.25.1'
 	implementation 'org.springframework.boot:spring-boot-starter-jersey'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.16.0'
 }
 
 dependencyManagement {

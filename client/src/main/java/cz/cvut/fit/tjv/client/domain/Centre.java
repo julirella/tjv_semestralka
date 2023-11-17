@@ -11,6 +11,9 @@ public class Centre implements AbstractEntity {
         this.price = price;
     }
 
+    public Centre() {
+    }
+
     public Long getId() {
         return id;
     }

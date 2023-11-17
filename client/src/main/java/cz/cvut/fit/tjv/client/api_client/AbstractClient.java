@@ -1,17 +1,22 @@
 package cz.cvut.fit.tjv.client.api_client;
 
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 
 //source: https://docs.oracle.com/javaee/7/tutorial/jaxrs-client001.htm
-public class AbstractClient <E> {
+public abstract class AbstractClient <E> {
     private Client client;
     private  String serverUrl;
     protected WebTarget endpointPath;
@@ -44,12 +49,22 @@ public class AbstractClient <E> {
         else if(response.getStatus() == 400) throw new RuntimeException(response.readEntity(String.class));
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
-    public Collection<E> readAll() {
-        Response response = endpointPath.request(MediaType.APPLICATION_JSON_TYPE).get();
+
+    abstract List<E> convertFromHashList(List<E> map);
+    public List<E> readAll() {
+        Response response = endpointPath.request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
         if(response.getStatus() != 200) throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
         else {
-            List<E> entities = response.readEntity(new GenericType<List<E>>() {});
-            return entities;
+            ObjectMapper mapper = new ObjectMapper();
+            String json = response.readEntity(String.class);
+            CollectionType listType = mapper.getTypeFactory().constructCollectionType(ArrayList.class, concreteClass);
+            try {
+                return mapper.readValue(json, listType);
+            }
+            catch (Exception e)
+            {
+                throw new RuntimeException("json messed up");
+            }
         }
     }
 
