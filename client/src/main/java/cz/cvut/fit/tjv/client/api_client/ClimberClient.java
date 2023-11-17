@@ -41,4 +41,5 @@ public class ClimberClient extends AbstractClient<Climber>{
         else if(response.getStatus() == 404) throw new RuntimeException(response.readEntity(String.class));
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
+
 }

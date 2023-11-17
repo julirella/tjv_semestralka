@@ -6,8 +6,6 @@ import cz.cvut.fit.tjv.client.service.RouteService;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
-import java.util.Collection;
-
 @ShellComponent
 public class RouteConsole {
     RouteService service;

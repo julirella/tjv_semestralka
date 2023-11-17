@@ -48,7 +48,7 @@ public class ClimberConsole {
     public String climberAddRoute(Long climberId, Long routeId){
         try{
             Climber modifiedClimber = service.addRoute(climberId, routeId);
-            return "route added to climber\n" + modifiedClimber.toString();
+            return "route added to climber\n" + modifiedClimber.getReadable();
         } catch (RuntimeException exception){
             return exception.getMessage();
         }
@@ -58,7 +58,7 @@ public class ClimberConsole {
     public String climberDeleteRoute(Long climberId, Long routeId){
         try{
             Climber modifiedClimber = service.deleteRoute(climberId, routeId);
-            return "route deleted from climber\n" + modifiedClimber.toString();
+            return "route deleted from climber\n" + modifiedClimber.getReadable();
         } catch (RuntimeException exception){
             return exception.getMessage();
         }
@@ -68,7 +68,11 @@ public class ClimberConsole {
     public String recommendRoutes(Long climberId){
         try{
             List<Route> routes = service.recommendRoutes(climberId);
-            return "you should try:\n" + routes.toString();
+            String routesString = "";
+            for(Route route : routes){
+                routesString = routesString + "\n" + route.getReadable();
+            }
+            return "you should try:\n" + routesString;
         } catch (RuntimeException exception){
             return exception.getMessage();
         }
@@ -79,7 +83,7 @@ public class ClimberConsole {
         try{
             Optional<Integer> newStrength = service.calculateStrength(climberId);
             if(newStrength.isEmpty()) return "cannot calculate, no routes climbed yet";
-            else return "strength recalculated to " + newStrength.get().toString();
+            else return "strength recalculated to " + newStrength.get();
         }catch (RuntimeException exception){
             return exception.getMessage();
         }

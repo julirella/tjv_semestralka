@@ -1,6 +1,6 @@
 package cz.cvut.fit.tjv.client.domain;
 
-public class Route {
+public class Route implements AbstractEntity{
     private Long id;
     private String name;
     private Integer grade;
@@ -11,6 +11,9 @@ public class Route {
         this.name = name;
         this.grade = grade;
         this.centre = centre;
+    }
+
+    public Route() {
     }
 
     public Long getId() {
@@ -53,5 +56,20 @@ public class Route {
                 ", grade=" + grade +
                 ", centre=" + centre +
                 '}';
+    }
+
+    @Override
+    public String getReadable() {
+        return "id=" + id +
+                ", name='" + name + '\'' +
+                ", grade=" + grade +
+                ", centre: " + centre.getReadable();
+    }
+
+    public String getReadableShort(){
+        return "id=" + id +
+                ", name='" + name + '\'' +
+                ", grade=" + grade +
+                ", centre id=" + centre.getId();
     }
 }

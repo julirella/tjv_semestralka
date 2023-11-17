@@ -1,10 +1,13 @@
 package cz.cvut.fit.tjv.client.ui;
 
+import cz.cvut.fit.tjv.client.domain.AbstractEntity;
 import cz.cvut.fit.tjv.client.service.AbstractService;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
-public class Console<Entity>{
+public class Console<Entity extends AbstractEntity>{
     AbstractService<Entity> service;
 
     public Console(AbstractService<Entity> service) {
@@ -14,7 +17,7 @@ public class Console<Entity>{
     public String create(Entity toCreate){
         try{
             Entity created = service.create(toCreate);
-            return "successfully created: " + created.toString();
+            return "successfully created: " + created.getReadable();
         }catch (RuntimeException exception){
             return exception.getMessage();
         }
@@ -22,7 +25,7 @@ public class Console<Entity>{
 
     public String readOne(Long id){
         try{
-            return service.readById(id).toString();
+            return service.readById(id).getReadable();
         } catch (RuntimeException exception){
             return exception.getMessage();
         }
@@ -30,7 +33,13 @@ public class Console<Entity>{
 
     public String readAll() {
         try {
-            return service.readAll().toString();
+            List<Entity> entities = service.readAll();
+            String toReturn = "";
+            for(Entity entity : entities){
+                String readable = entity.getReadable();
+                toReturn = toReturn + "\n" + readable;
+            }
+            return toReturn;
         } catch (RuntimeException exception){
             return exception.getMessage();
         }
@@ -38,7 +47,7 @@ public class Console<Entity>{
     public String update(Entity toUpdate){
         try{
             Entity updated = service.update(toUpdate);
-            return "successfully updated:" + updated.toString();
+            return "successfully updated:" + updated.getReadable();
         }catch (RuntimeException exception){
             return exception.getMessage();
         }

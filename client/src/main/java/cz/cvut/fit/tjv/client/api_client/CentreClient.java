@@ -8,4 +8,5 @@ public class CentreClient extends AbstractClient<Centre>{
     public CentreClient() {
         super("/centre", Centre.class);
     }
+
 }
