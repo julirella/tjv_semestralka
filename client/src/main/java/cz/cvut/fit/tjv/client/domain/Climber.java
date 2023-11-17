@@ -89,7 +89,7 @@ public class Climber implements AbstractEntity{
                 ", surname='" + surname + '\'' +
                 ", strength=" + strength +
                 ", budget=" + budget;
-        String readableRoutes = "";
+        String readableRoutes = "\n\troutes:";
         for (Route route : this.routes){
             readableRoutes = readableRoutes + "\n\t" + route.getReadable();
         }

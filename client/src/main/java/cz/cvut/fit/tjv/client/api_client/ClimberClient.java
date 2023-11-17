@@ -9,7 +9,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 @Component
@@ -43,13 +42,4 @@ public class ClimberClient extends AbstractClient<Climber>{
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
 
-    @Override
-    List<Climber> convertFromHashList(List<Climber> map) {
-        return null;
-    }
-
-//    @Override
-//    Climber convertFromHashList(Climber map) {
-//        return null;
-//    }
 }

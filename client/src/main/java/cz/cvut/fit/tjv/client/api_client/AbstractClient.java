@@ -1,8 +1,5 @@
 package cz.cvut.fit.tjv.client.api_client;
 
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
@@ -50,7 +47,7 @@ public abstract class AbstractClient <E> {
         else throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
     }
 
-    abstract List<E> convertFromHashList(List<E> map);
+//    https://www.baeldung.com/jackson-linkedhashmap-cannot-be-cast
     public List<E> readAll() {
         Response response = endpointPath.request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
         if(response.getStatus() != 200) throw new RuntimeException(response.getStatusInfo().getReasonPhrase());
