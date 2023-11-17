@@ -2,7 +2,7 @@ package cz.cvut.fit.tjv.client.domain;
 
 import java.util.Collection;
 
-public class Climber {
+public class Climber implements AbstractEntity{
     private Long id;
     private String name;
     private String surname;
@@ -77,5 +77,29 @@ public class Climber {
                 ", budget=" + budget +
                 ", routes=" + routes +
                 '}';
+    }
+
+    @Override
+    public String getReadable() {
+        String climber = "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", strength=" + strength +
+                ", budget=" + budget;
+        String readableRoutes = "";
+        for (Route route : this.routes){
+            readableRoutes = "\n" + route.getReadable();
+        }
+        return climber + readableRoutes;
+    }
+
+    @Override
+    public String getReadableShort() {
+        return "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", strength=" + strength +
+                ", budget=" + budget +
+                ", number of routes climbed=" + routes.size();
     }
 }

@@ -1,6 +1,6 @@
 package cz.cvut.fit.tjv.client.domain;
 
-public class Centre {
+public class Centre implements AbstractEntity {
     private Long id;
     private String name;
     private Integer price;
@@ -42,5 +42,16 @@ public class Centre {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    public String getReadable() {
+        return "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price;
+    }
+
+    @Override
+    public String getReadableShort() {
+        return getReadable();
     }
 }
