@@ -9,3 +9,19 @@ Možnost doporučení cest pro lezce. Vypíšou se cesty, které lezec ještě n
 
 ### Komplexní business operace
 Lezci se přepočítá síla na základě obtížností cest, které vylezl.
+
+
+## Spuštění
+
+
+### server
+In climbers2 directory:
+
+docker compose up
+
+### client
+In client directory:
+
+To run: docker run -it --name client-container --network container:app_container client-image
+
+To stop (open another terminal): docker stop client-container
