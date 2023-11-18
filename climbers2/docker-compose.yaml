@@ -1,0 +1,26 @@
+services:
+  db:
+    ports:
+      - 5432:5432
+    container_name: db_container2
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=julia
+      - POSTGRES_USER=julia
+      - POSTGRES_DB=db3
+    volumes:
+      - .docker/postgres-data:/var/lib/postgresql/data
+    restart: always
+  backend:
+    build: .
+    container_name: app_container
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/db3
+      SPRING_DATASOURCE_USERNAME: julia
+      SPRING_DATASOURCE_PASSWORD: julia
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - db
+    restart: always
