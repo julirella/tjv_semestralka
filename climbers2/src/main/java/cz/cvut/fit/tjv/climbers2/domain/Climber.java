@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 @Entity
 public class Climber implements DomainEntity<Long> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String name;
     private String surname;

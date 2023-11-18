@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity
 public class Route implements DomainEntity<Long> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String name;
 
