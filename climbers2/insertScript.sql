@@ -1,4 +1,4 @@
-//source: www.mockaroo.com
+--source: www.mockaroo.com
 insert into centre (id, name, price) values (1, 'Rocky Mountain Climbing Centre', 131);
 insert into centre (id, name, price) values (2, 'Summit Peak Climbing Gym', 498);
 insert into centre (id, name, price) values (3, 'Vertical Edge Climbing Center', 456);
@@ -10,7 +10,7 @@ insert into centre (id, name, price) values (8, 'Climb On! Indoor Climbing', 459
 insert into centre (id, name, price) values (9, 'Elevation Rock Climbing', 252);
 insert into centre (id, name, price) values (10, 'The Climb Zone', 111);
 
-select setval(pg_get_serial_sequence('centre','id'),20);
+-- select setval('centre_seq', 11);
 
 insert into route (id, grade, name, centre_id) values (1, 7, 'The Mighty Chimera', 7);
 insert into route (id, grade, name, centre_id) values (2, 6, 'Whispering Wall', 8);
@@ -63,7 +63,7 @@ insert into route (id, grade, name, centre_id) values (48, 6, 'Pinnacle Peak', 7
 insert into route (id, grade, name, centre_id) values (49, 7, 'Zenith Zephyr', 9);
 insert into route (id, grade, name, centre_id) values (50, 9, 'Enchanted Edge', 5);
 
-select setval(pg_get_serial_sequence('route','id'),50);
+-- select setval('route_seq', 51);
 
 insert into climber (id, name, surname, budget, strength) values (1, 'Jillane', 'Jertz', 432, 4);
 insert into climber (id, name, surname, budget, strength) values (2, 'Atlante', 'Sketh', 452, 8);
@@ -116,7 +116,7 @@ insert into climber (id, name, surname, budget, strength) values (48, 'Donavon',
 insert into climber (id, name, surname, budget, strength) values (49, 'Mariann', 'Cuerda', 100, 3);
 insert into climber (id, name, surname, budget, strength) values (50, 'Kath', 'Dehn', 482, 3);
 
-select setval(pg_get_serial_sequence('climber','id'),50);
+-- select setval('climber_seq', 51);
 
 insert into route_climber (climber_id, routes_id) values (22, 28);
 insert into route_climber (climber_id, routes_id) values (41, 23);
@@ -199,7 +199,6 @@ insert into route_climber (climber_id, routes_id) values (38, 6);
 insert into route_climber (climber_id, routes_id) values (34, 16);
 insert into route_climber (climber_id, routes_id) values (42, 37);
 insert into route_climber (climber_id, routes_id) values (6, 2);
-insert into route_climber (climber_id, routes_id) values (23, 9);
 insert into route_climber (climber_id, routes_id) values (42, 4);
 insert into route_climber (climber_id, routes_id) values (12, 38);
 insert into route_climber (climber_id, routes_id) values (48, 11);
@@ -208,7 +207,6 @@ insert into route_climber (climber_id, routes_id) values (14, 42);
 insert into route_climber (climber_id, routes_id) values (2, 36);
 insert into route_climber (climber_id, routes_id) values (25, 33);
 insert into route_climber (climber_id, routes_id) values (36, 3);
-insert into route_climber (climber_id, routes_id) values (33, 35);
 insert into route_climber (climber_id, routes_id) values (46, 48);
 insert into route_climber (climber_id, routes_id) values (12, 2);
 insert into route_climber (climber_id, routes_id) values (3, 15);
