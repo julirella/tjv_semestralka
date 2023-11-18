@@ -28,4 +28,10 @@ In client directory:
 * gradle build
 * docker build -t client-image .
 * docker run -it --name client-container --network container:app_container client-image
-* To stop (open another terminal): docker stop client-container
+* To stop (open another terminal): docker rm -f client-container
+
+### insert script
+In climbers2 directory:
+* docker compose up
+* paste insertScript.sql into query console and run
+* docker compose down and up again if necessary
