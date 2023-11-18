@@ -1,4 +1,9 @@
 --source: www.mockaroo.com
+delete from route_climber;
+delete from route;
+delete from climber;
+delete from centre;
+
 insert into centre (id, name, price) values (1, 'Rocky Mountain Climbing Centre', 131);
 insert into centre (id, name, price) values (2, 'Summit Peak Climbing Gym', 498);
 insert into centre (id, name, price) values (3, 'Vertical Edge Climbing Center', 456);
