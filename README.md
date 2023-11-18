@@ -10,18 +10,22 @@ Možnost doporučení cest pro lezce. Vypíšou se cesty, které lezec ještě n
 ### Komplexní business operace
 Lezci se přepočítá síla na základě obtížností cest, které vylezl.
 
+## Prerekvizity
+* java 17
+* gradle
+* docker
 
 ## Spuštění
-
 
 ### server
 In climbers2 directory:
 
-docker compose up
+* gradle build
+* docker compose up
 
 ### client
 In client directory:
-
-To run: docker run -it --name client-container --network container:app_container client-image
-
-To stop (open another terminal): docker stop client-container
+* gradle build
+* docker build -t client-image .
+* docker run -it --name client-container --network container:app_container client-image
+* To stop (open another terminal): docker stop client-container
