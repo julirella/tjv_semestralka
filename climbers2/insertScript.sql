@@ -10,7 +10,7 @@ insert into centre (id, name, price) values (8, 'Climb On! Indoor Climbing', 459
 insert into centre (id, name, price) values (9, 'Elevation Rock Climbing', 252);
 insert into centre (id, name, price) values (10, 'The Climb Zone', 111);
 
--- select setval('centre_seq', 11);
+select setval('centre_seq', 11);
 
 insert into route (id, grade, name, centre_id) values (1, 7, 'The Mighty Chimera', 7);
 insert into route (id, grade, name, centre_id) values (2, 6, 'Whispering Wall', 8);
@@ -63,7 +63,7 @@ insert into route (id, grade, name, centre_id) values (48, 6, 'Pinnacle Peak', 7
 insert into route (id, grade, name, centre_id) values (49, 7, 'Zenith Zephyr', 9);
 insert into route (id, grade, name, centre_id) values (50, 9, 'Enchanted Edge', 5);
 
--- select setval('route_seq', 51);
+select setval('route_seq', 51);
 
 insert into climber (id, name, surname, budget, strength) values (1, 'Jillane', 'Jertz', 432, 4);
 insert into climber (id, name, surname, budget, strength) values (2, 'Atlante', 'Sketh', 452, 8);
@@ -116,7 +116,7 @@ insert into climber (id, name, surname, budget, strength) values (48, 'Donavon',
 insert into climber (id, name, surname, budget, strength) values (49, 'Mariann', 'Cuerda', 100, 3);
 insert into climber (id, name, surname, budget, strength) values (50, 'Kath', 'Dehn', 482, 3);
 
--- select setval('climber_seq', 51);
+select setval('climber_seq', 51);
 
 insert into route_climber (climber_id, routes_id) values (22, 28);
 insert into route_climber (climber_id, routes_id) values (41, 23);
