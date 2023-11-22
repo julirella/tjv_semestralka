@@ -1,7 +1,6 @@
 package cz.cvut.fit.tjv.client.service;
 
 import cz.cvut.fit.tjv.client.api_client.ClimberClient;
-import cz.cvut.fit.tjv.client.api_client.RouteClient;
 import cz.cvut.fit.tjv.client.domain.Climber;
 import cz.cvut.fit.tjv.client.domain.Route;
 import org.springframework.stereotype.Service;

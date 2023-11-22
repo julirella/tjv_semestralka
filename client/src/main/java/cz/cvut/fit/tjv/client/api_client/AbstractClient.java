@@ -14,11 +14,11 @@ import java.util.List;
 
 //source: https://docs.oracle.com/javaee/7/tutorial/jaxrs-client001.htm
 public abstract class AbstractClient <E> {
-    private Client client;
-    private  String serverUrl;
+    private final Client client;
+    private final String serverUrl;
     protected WebTarget endpointPath;
-    private Class<E> concreteClass;
-    private String endpoint;
+    private final Class<E> concreteClass;
+    private final String endpoint;
 
     public AbstractClient(String endpoint, Class<E> concreteClass) {
         this.concreteClass = concreteClass;
