@@ -18,20 +18,24 @@ Lezci se přepočítá síla na základě obtížností cest, které vylezl.
 ## Spuštění
 
 ### server
-In climbers2 directory:
+V adresáří climbers2:
 
 * gradle build
 * docker compose up
 
-### client
-In client directory:
+### klient
+V adresáří client:
 * gradle build
 * docker build -t client-image .
 * docker run -it --name client-container --network container:app_container client-image
 * To stop (open another terminal): docker rm -f client-container
 
 ### insert script
-In climbers2 directory:
+V adresáří climbers2:
 * docker compose up
-* paste insertScript.sql into query console and run
-* docker compose down and up again if necessary
+* vložit insertScript.sql do query console a spustit
+
+## Ovládání klienta
+
+* zobrazení příkazů: help
+* zobrazení podrobností o příkazu: <příkaz> hep
