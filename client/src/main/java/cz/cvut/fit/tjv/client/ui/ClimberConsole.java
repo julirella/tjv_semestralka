@@ -68,6 +68,7 @@ public class ClimberConsole {
     public String recommendRoutes(Long climberId){
         try{
             List<Route> routes = service.recommendRoutes(climberId);
+            if(routes.isEmpty()) return "There are no available routes for you.";
             String routesString = "";
             for(Route route : routes){
                 routesString = routesString + "\n" + route.getReadable();

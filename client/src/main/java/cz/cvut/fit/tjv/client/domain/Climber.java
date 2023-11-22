@@ -91,11 +91,12 @@ public class Climber implements AbstractEntity{
                 ", budget=" + budget;
         if(!(this.routes == null)) {
             String readableRoutes = "\n\troutes:";
+            if(routes.isEmpty()) return climber + readableRoutes + " no routes climbed yet";
             for (Route route : this.routes) {
                 readableRoutes = readableRoutes + "\n\t" + route.getReadable();
             }
             return climber + readableRoutes;
-        } else return climber;
+        } else return climber + " no routes climbed yet";
     }
 
     @Override

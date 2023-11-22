@@ -36,7 +36,7 @@ public class Console<Entity extends AbstractEntity>{
             List<Entity> entities = service.readAll();
             String toReturn = "";
             for(Entity entity : entities){
-                String readable = entity.getReadable();
+                String readable = entity.getReadableShort();
                 toReturn = toReturn + "\n" + readable;
             }
             return toReturn;
