@@ -10,11 +10,11 @@ import java.util.Collection;
 @ShellComponent
 public class CentreConsole {
     CentreService service;
-    Console<Centre> console;
+//    Console<Centre> console;
 
     public CentreConsole(CentreService service) {
         this.service = service;
-        console = new Console<Centre>(service);
+//        console = new Console<Centre>(service);
     }
 
     @ShellMethod(key = "hello")
@@ -24,25 +24,25 @@ public class CentreConsole {
 
     @ShellMethod
     public String createCentre(String name, Integer price){
-        return console.create(new Centre(null, name, price));
+        return service.create(new Centre(null, name, price));
     }
     @ShellMethod
     public String readCentre(Long id){
-        return console.readOne(id);
+        return service.readById(id);
     }
 
     @ShellMethod
     public String readCentres() {
-        return console.readAll();
+        return service.readAll();
     }
 
     @ShellMethod
     public String updateCentre(Long id, String name, Integer price){
-        return console.update(new Centre(id, name, price));
+        return service.update(new Centre(id, name, price));
     }
 
     @ShellMethod
     public String deleteCentre(Long id){
-        return console.delete(id);
+        return service.delete(id);
     }
 }

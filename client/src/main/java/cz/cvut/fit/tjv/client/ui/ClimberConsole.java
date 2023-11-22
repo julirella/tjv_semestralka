@@ -13,35 +13,35 @@ import java.util.Optional;
 @ShellComponent
 public class ClimberConsole {
     ClimberService service;
-    Console<Climber> console;
+//    Console<Climber> console;
 
     public ClimberConsole(ClimberService service) {
         this.service = service;
-        console = new Console<Climber>(service);
+//        console = new Console<Climber>(service);
     }
 
     @ShellMethod
     public String createClimber(String name, String surname, Integer strength, Integer budget){
-        return console.create(new Climber(null, name, surname, strength, budget));
+        return service.create(new Climber(null, name, surname, strength, budget));
     }
     @ShellMethod
     public String readClimber(Long id){
-        return console.readOne(id);
+        return service.readById(id);
     }
 
     @ShellMethod
     String readClimbers() {
-        return console.readAll();
+        return service.readAll();
     }
 
     @ShellMethod
     public String updateClimber(Long id, String name, String surname, Integer strength, Integer budget){
-        return console.update(new Climber(id, name, surname, strength, budget));
+        return service.update(new Climber(id, name, surname, strength, budget));
     }
 
     @ShellMethod
     public String deleteClimber(Long id){
-        return console.delete(id);
+        return service.delete(id);
     }
 
     @ShellMethod
