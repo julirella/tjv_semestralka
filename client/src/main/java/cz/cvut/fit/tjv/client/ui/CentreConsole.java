@@ -5,44 +5,35 @@ import cz.cvut.fit.tjv.client.service.CentreService;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
-import java.util.Collection;
-
 @ShellComponent
 public class CentreConsole {
     CentreService service;
-    Console<Centre> console;
 
     public CentreConsole(CentreService service) {
         this.service = service;
-        console = new Console<Centre>(service);
     }
 
-    @ShellMethod(key = "hello")
-    public String hello() {
-        return "hello";
-    }
-
-    @ShellMethod
+    @ShellMethod(value = "Create a centre with the given parameters.")
     public String createCentre(String name, Integer price){
-        return console.create(new Centre(null, name, price));
+        return service.create(new Centre(null, name, price));
     }
-    @ShellMethod
+    @ShellMethod(value = "Print information about the centre with the given id.")
     public String readCentre(Long id){
-        return console.readOne(id);
+        return service.readById(id);
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Print information about all centres.")
     public String readCentres() {
-        return console.readAll();
+        return service.readAll();
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Update a centre with the given parameters.")
     public String updateCentre(Long id, String name, Integer price){
-        return console.update(new Centre(id, name, price));
+        return service.update(new Centre(id, name, price));
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Delete the centre with the given id.")
     public String deleteCentre(Long id){
-        return console.delete(id);
+        return service.delete(id);
     }
 }

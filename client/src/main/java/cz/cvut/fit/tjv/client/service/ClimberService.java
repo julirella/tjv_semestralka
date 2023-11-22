@@ -9,11 +9,19 @@ import java.util.*;
 
 @Service
 public class ClimberService extends AbstractService<Climber>{
-    private ClimberClient client;
+    private final ClimberClient client;
     public ClimberService(ClimberClient client) {
         super(client);
         this.client = client;
     }
+
+    public String update(Climber toUpdate, Boolean removeRoutes) {
+        if(!removeRoutes){
+            toUpdate.setRoutes(client.readById(toUpdate.getId()).getRoutes());
+        }
+        return super.update(toUpdate);
+    }
+
     public Climber addRoute(Long climberId, Long routeId){
         return client.addRoute(climberId, routeId);
     }

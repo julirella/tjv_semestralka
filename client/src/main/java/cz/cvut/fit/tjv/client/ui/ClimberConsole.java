@@ -5,46 +5,44 @@ import cz.cvut.fit.tjv.client.domain.Route;
 import cz.cvut.fit.tjv.client.service.ClimberService;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 @ShellComponent
 public class ClimberConsole {
     ClimberService service;
-    Console<Climber> console;
 
     public ClimberConsole(ClimberService service) {
         this.service = service;
-        console = new Console<Climber>(service);
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Create a climber with the given parameters.")
     public String createClimber(String name, String surname, Integer strength, Integer budget){
-        return console.create(new Climber(null, name, surname, strength, budget));
+        return service.create(new Climber(null, name, surname, strength, budget));
     }
-    @ShellMethod
+    @ShellMethod(value = "Print information about the climber with the given id.")
     public String readClimber(Long id){
-        return console.readOne(id);
+        return service.readById(id);
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Print information about all climbers.")
     String readClimbers() {
-        return console.readAll();
+        return service.readAll();
     }
 
-    @ShellMethod
-    public String updateClimber(Long id, String name, String surname, Integer strength, Integer budget){
-        return console.update(new Climber(id, name, surname, strength, budget));
+    @ShellMethod(value = "Update a climber with the given parameters.")
+    public String updateClimber(Long id, String name, String surname, Integer strength, Integer budget, @ShellOption(defaultValue = "false") Boolean removeRoutes){
+        return service.update(new Climber(id, name, surname, strength, budget), removeRoutes);
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Delete the climber with the given id.")
     public String deleteClimber(Long id){
-        return console.delete(id);
+        return service.delete(id);
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Add a route to a climbers list of climbed routes.")
     public String climberAddRoute(Long climberId, Long routeId){
         try{
             Climber modifiedClimber = service.addRoute(climberId, routeId);
@@ -54,7 +52,7 @@ public class ClimberConsole {
         }
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Delete a route from a climbers list of climbed routes.")
     public String climberDeleteRoute(Long climberId, Long routeId){
         try{
             Climber modifiedClimber = service.deleteRoute(climberId, routeId);
@@ -64,10 +62,11 @@ public class ClimberConsole {
         }
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Recommend routes for a climber to climb based on their strength and budget.")
     public String recommendRoutes(Long climberId){
         try{
             List<Route> routes = service.recommendRoutes(climberId);
+            if(routes.isEmpty()) return "There are no available routes for you.";
             String routesString = "";
             for(Route route : routes){
                 routesString = routesString + "\n" + route.getReadable();
@@ -78,7 +77,7 @@ public class ClimberConsole {
         }
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Calculate a climbers strength based on routes they have climbed.")
     public String calculateStrength(Long climberId){
         try{
             Optional<Integer> newStrength = service.calculateStrength(climberId);

@@ -89,20 +89,26 @@ public class Climber implements AbstractEntity{
                 ", surname='" + surname + '\'' +
                 ", strength=" + strength +
                 ", budget=" + budget;
-        String readableRoutes = "\n\troutes:";
-        for (Route route : this.routes){
-            readableRoutes = readableRoutes + "\n\t" + route.getReadable();
-        }
-        return climber + readableRoutes;
+        if(!(this.routes == null)) {
+            String readableRoutes = "\n\troutes:";
+            if(routes.isEmpty()) return climber + readableRoutes + ", no routes climbed yet";
+            for (Route route : this.routes) {
+                readableRoutes = readableRoutes + "\n\t" + route.getReadable();
+            }
+            return climber + readableRoutes;
+        } else return climber + " no routes climbed yet";
     }
 
     @Override
     public String getReadableShort() {
-        return "id=" + id +
+        String climber = "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", strength=" + strength +
                 ", budget=" + budget +
-                ", number of routes climbed=" + routes.size();
+                ", number of routes climbed=";
+        if(!(this.routes == null) ){
+            return climber + this.routes.size();
+        } else return climber + "0";
     }
 }
