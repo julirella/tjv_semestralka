@@ -40,10 +40,6 @@ public class ClimberController extends AbstractCrudController<Climber, Long>{
         return service.deleteRoute(climberId, routeId);
     }
 
-    /**
-     * For a given climber, recommends routes that the climber hasn't climbed yet, are within their strength range and budget,
-     * ordered by centre price
-     * */
     @Operation(description = "Recommend routes that the climber hasn't climbed yet and are within their strength range and budget.")
     @Parameter(name = "id", description = "Id of the climber")
     @ApiResponse(responseCode = "200", description = "OK")

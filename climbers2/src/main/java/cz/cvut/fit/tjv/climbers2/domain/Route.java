@@ -9,7 +9,6 @@ public class Route implements DomainEntity<Long> {
     @GeneratedValue
     private Long id;
     private String name;
-
     private Integer grade;
     @ManyToOne
     private Centre centre;

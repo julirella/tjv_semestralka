@@ -45,7 +45,7 @@ public class ClimberService extends AbstractCrudService<Climber, Long>{
         * order by centre price
         * */
         Optional<Climber> climber = climberRepository.findById(climberId);
-        if(climber.isEmpty()) throw new IdDoesNotExistException("Climber with id " + climberId.toString() + " doesn't exist");
+        if(climber.isEmpty()) throw new IdDoesNotExistException("Climber with id " + climberId + " doesn't exist");
         return routeRepository.recommendRoutesForClimber(climberId);
     }
 }

@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 import jakarta.persistence.*;
 
-//@Table??
 @Entity
 public class Climber implements DomainEntity<Long> {
     @Id
@@ -12,7 +11,7 @@ public class Climber implements DomainEntity<Long> {
     private Long id;
     private String name;
     private String surname;
-    private Integer strength; //or some kind of enum??
+    private Integer strength;
     private Integer budget;
 
     @ManyToMany(fetch = FetchType.EAGER)

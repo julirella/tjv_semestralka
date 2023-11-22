@@ -26,7 +26,6 @@ public class ClimberServiceUnitTest {
     @MockBean
     RouteRepository routeRepository;
 
-    //unit test
     @Test
     void shouldAddRouteToClimber(){
         Climber climber = new Climber(1L, "Test", "Climber", 5, 300);

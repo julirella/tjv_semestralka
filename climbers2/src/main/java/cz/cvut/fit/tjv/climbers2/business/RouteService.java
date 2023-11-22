@@ -43,7 +43,7 @@ public class RouteService extends AbstractCrudService<Route, Long>
     @Override
     public void deleteById(Long routeId){
         Optional<Route> route = routeRepository.findById(routeId);
-        if(route.isEmpty()) throw new IdDoesNotExistException("Route with id " + routeId.toString() + " doesn't exist.");
+        if(route.isEmpty()) throw new IdDoesNotExistException("Route with id " + routeId + " doesn't exist.");
         Iterable<Climber> climbers = climberRepository.findClimbersByRoutes_Id(routeId);
         //for each climber, check if it has route, if yes, delete the route
         for(Climber climber : climbers){
