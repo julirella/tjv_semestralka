@@ -26,9 +26,7 @@ V adresáří climbers2:
 ### Klient
 V adresáří client:
 * gradle build
-* docker build -t client-image .
-* docker run -it --name client-container --network container:app_container client-image
-* To stop (open another terminal): docker rm -f client-container
+* java -jar build/libs/client-0.0.1-SNAPSHOT.jar
 
 ### Insert script
 Po prvotním spuštění aplikace v novém prostředí je databáze prázdná, lze ji ale naplnit vzorovými daty pomocí insert scriptu.
