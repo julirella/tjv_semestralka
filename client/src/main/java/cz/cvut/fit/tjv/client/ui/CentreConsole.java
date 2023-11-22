@@ -4,6 +4,7 @@ import cz.cvut.fit.tjv.client.domain.Centre;
 import cz.cvut.fit.tjv.client.service.CentreService;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
 
 import java.util.Collection;
 
@@ -18,8 +19,8 @@ public class CentreConsole {
     }
 
     @ShellMethod(key = "hello")
-    public String hello() {
-        return "hello";
+    public String hello(@ShellOption(defaultValue = "false") Boolean flag) {
+        return flag.toString();
     }
 
     @ShellMethod

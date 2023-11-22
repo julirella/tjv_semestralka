@@ -5,6 +5,7 @@ import cz.cvut.fit.tjv.client.domain.Route;
 import cz.cvut.fit.tjv.client.service.ClimberService;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,8 +36,8 @@ public class ClimberConsole {
     }
 
     @ShellMethod
-    public String updateClimber(Long id, String name, String surname, Integer strength, Integer budget){
-        return service.update(new Climber(id, name, surname, strength, budget));
+    public String updateClimber(Long id, String name, String surname, Integer strength, Integer budget, @ShellOption(defaultValue = "false") Boolean removeRoutes){
+        return service.update(new Climber(id, name, surname, strength, budget), removeRoutes);
     }
 
     @ShellMethod
