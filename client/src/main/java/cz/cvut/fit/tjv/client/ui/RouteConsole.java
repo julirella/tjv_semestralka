@@ -9,33 +9,32 @@ import org.springframework.shell.standard.ShellMethod;
 @ShellComponent
 public class RouteConsole {
     RouteService service;
-//    Console<Route> console;
 
     public RouteConsole(RouteService service) {
         this.service = service;
-//        console = new Console<Route>(service);
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Create a route with the given parameters.")
     public String createRoute(String name, Integer grade, Long centreId){
         return service.create(new Route(null, name, grade, new Centre(centreId, null, null)));
     }
-    @ShellMethod
+
+    @ShellMethod(value = "Print information about the route with the given id.")
     public String readRoute(Long id){
         return service.readById(id);
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Print information about all routes.")
     public String readRoutes() {
         return service.readAll();
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Update a route with the given parameters.")
     public String updateRoute(Long routeId, String name, Integer grade, Long centreId){
         return service.update(new Route(routeId, name, grade, new Centre(centreId, null, null)));
     }
 
-    @ShellMethod
+    @ShellMethod(value = "Delete the route with the given id.")
     public String deleteRoute(Long id){
         return service.delete(id);
     }
