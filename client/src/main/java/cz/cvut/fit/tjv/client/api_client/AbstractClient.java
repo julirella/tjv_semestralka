@@ -23,7 +23,6 @@ public abstract class AbstractClient <E> {
     public AbstractClient(String endpoint, Class<E> concreteClass) {
         this.concreteClass = concreteClass;
         this.client = ClientBuilder.newClient();
-//        this.serverUrl = "${server.url}";
         this.serverUrl = "http://localhost:8080";
         this.endpoint = endpoint;
         this.endpointPath = client.target(serverUrl + endpoint);

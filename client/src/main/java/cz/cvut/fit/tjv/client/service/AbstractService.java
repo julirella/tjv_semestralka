@@ -13,16 +13,14 @@ public class AbstractService <Entity extends AbstractEntity>{
     }
 
     public String create(Entity toCreate){
-//        return client.create(toCreate);
         try{
             Entity created = client.create(toCreate);
-            return "successfully created: " + created.getReadable();
+            return "successfully created: " + created.getReadableShort();
         }catch (RuntimeException exception){
             return exception.getMessage();
         }
     }
     public String readAll() {
-//        return client.readAll();
         try {
             List<Entity> entities = client.readAll();
             String toReturn = "";
@@ -36,7 +34,6 @@ public class AbstractService <Entity extends AbstractEntity>{
         }
     }
     public String readById(Long id){
-//        return client.readById(id);
         try{
             return client.readById(id).getReadable();
         } catch (RuntimeException exception){
@@ -45,10 +42,9 @@ public class AbstractService <Entity extends AbstractEntity>{
     }
 
     public String update(Entity toUpdate){
-//        return client.update(toUpdate);
         try{
             Entity updated = client.update(toUpdate);
-            return "successfully updated:" + updated.getReadable();
+            return "successfully updated: " + updated.getReadable();
         }catch (RuntimeException exception){
             return exception.getMessage();
         }
