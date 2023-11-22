@@ -38,4 +38,4 @@ V adresáří climbers2:
 ## Ovládání klienta
 
 * zobrazení příkazů: help
-* zobrazení podrobností o příkazu: <příkaz> hep
+* zobrazení podrobností o příkazu: <příkaz> help
